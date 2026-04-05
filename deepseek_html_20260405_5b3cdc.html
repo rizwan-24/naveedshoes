@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Naveed Shoes - Premium luxury footwear blending elegance and comfort. Discover the finest collection in Kandiaro. Custom design available. Free delivery.">
+    <meta name="keywords" content="Naveed Shoes, premium footwear, luxury shoes, Kandiaro, custom design shoes, Pakistani shoes">
+    <meta name="author" content="Naveed Shoes">
+    <title>Naveed Shoes | Luxury Footwear & Custom Design</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230B0B0B'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%23C9A14A' font-family='Arial, sans-serif' font-weight='bold'%3ENS%3C/text%3E%3C/svg%3E">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0B0B0B;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .logo, .nav-links a {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1A1A1A; }
+        ::-webkit-scrollbar-thumb { background: #C9A14A; border-radius: 10px; }
+
+        /* Loader */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0B0B0B;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+        .loader {
+            width: 55px;
+            height: 55px;
+            border: 3px solid rgba(201,161,74,0.2);
+            border-top: 3px solid #C9A14A;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(11,11,11,0.94);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(201,161,74,0.35);
+        }
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF 30%, #C9A14A 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .nav-links a:hover, .nav-links a.active { color: #C9A14A; }
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #C9A14A;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: rgba(0,0,0,0.97);
+                backdrop-filter: blur(20px);
+                width: 70%;
+                height: calc(100vh - 70px);
+                padding: 2.5rem;
+                transition: 0.3s;
+                border-right: 1px solid #C9A14A;
+            }
+            .nav-links.active { left: 0; }
+            .menu-icon { display: block; }
+        }
+
+        .btn-gold {
+            background: #C9A14A;
+            color: #0B0B0B;
+            border: none;
+            padding: 14px 34px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 8px 20px rgba(201,161,74,0.3);
+        }
+        .btn-gold:hover {
+            background: #dbb95e;
+            transform: scale(1.02);
+            box-shadow: 0 12px 28px rgba(201,161,74,0.5);
+        }
+
+        /* HERO - ULTRA POWERFUL */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 5%;
+            background: radial-gradient(circle at 20% 30%, #1e1808, #0B0B0B 85%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201,161,74,0.2), transparent);
+            border-radius: 50%;
+            animation: pulse 8s infinite;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(201,161,74,0.1), transparent);
+            border-radius: 50%;
+            animation: pulse 10s infinite reverse;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.3); opacity: 0.8; }
+        }
+        .hero-content {
+            flex: 1;
+            z-index: 2;
+        }
+        .hero-content .badge {
+            background: rgba(201,161,74,0.2);
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #C9A14A;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(4px);
+            animation: fadeInUp 0.8s ease;
+        }
+        .hero-content h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+            animation: fadeInUp 0.8s ease 0.1s backwards;
+        }
+        .hero-gold {
+            color: #C9A14A;
+            text-shadow: 0 0 20px rgba(201,161,74,0.5);
+            display: inline-block;
+            animation: glow 2s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(201,161,74,0.3); }
+            50% { text-shadow: 0 0 30px rgba(201,161,74,0.8); }
+        }
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+        .stat h4 { font-size: 1.5rem; color: #C9A14A; }
+        .hero-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            animation: float 5s ease-in-out infinite;
+        }
+        .hero-img img {
+            max-width: 85%;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6));
+            border-radius: 20px;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-18px); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 3rem; }
+            .hero-stats { justify-content: center; }
+        }
+
+        /* Categories */
+        .categories { padding: 5rem 5%; }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; }
+        .section-title span { color: #C9A14A; }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+        }
+        .category-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(201,161,74,0.2);
+            border-radius: 28px;
+            padding: 2rem 1rem;
+            text-align: center;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+        .category-card i { font-size: 2.8rem; color: #C9A14A; margin-bottom: 1rem; }
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: #C9A14A;
+            box-shadow: 0 20px 30px -10px rgba(201,161,74,0.2);
+        }
+
+        /* Products Grid */
+        .featured { padding: 3rem 5% 5rem; }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: #111;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.4s;
+            border: 1px solid #222;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: #C9A14A;
+            box-shadow: 0 25px 35px -12px rgba(201,161,74,0.25);
+        }
+        .product-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .product-card:hover .product-img { transform: scale(1.05); }
+        .product-info { padding: 1.5rem; }
+        .product-name { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .product-price { color: #C9A14A; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem; }
+        .order-btn {
+            background: transparent;
+            border: 1px solid #C9A14A;
+            color: #C9A14A;
+            padding: 8px 20px;
+            border-radius: 40px;
+            width: 100%;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .order-btn:hover { background: #C9A14A; color: #0B0B0B; }
+
+        /* QUICK VIEW MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(15px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal.active { display: flex; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-content {
+            background: #111;
+            border-radius: 32px;
+            max-width: 900px;
+            width: 90%;
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid rgba(201,161,74,0.5);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.4s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #C9A14A;
+            z-index: 10;
+            transition: 0.2s;
+        }
+        .modal-close:hover { transform: scale(1.1); }
+        .modal-img {
+            flex: 1;
+            min-width: 250px;
+        }
+        .modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .modal-details {
+            flex: 1;
+            padding: 2rem;
+        }
+        .modal-details h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .modal-price { font-size: 1.8rem; color: #C9A14A; font-weight: 700; margin: 1rem 0; }
+        .modal-desc { color: #aaa; line-height: 1.6; margin-bottom: 1.5rem; }
+        .modal-order {
+            background: #C9A14A;
+            color: #0B0B0B;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+        .modal-order:hover { background: #dbb95e; transform: scale(1.02); }
+
+        /* Special Banner */
+        .special-banner {
+            margin: 2rem 5%;
+            background: linear-gradient(115deg, #1f1a0c, #0a0a0a);
+            border-radius: 48px;
+            padding: 3rem;
+            text-align: center;
+            border: 1px solid rgba(201,161,74,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .special-banner::before {
+            content: "✦";
+            font-size: 180px;
+            position: absolute;
+            opacity: 0.05;
+            right: -30px;
+            bottom: -50px;
+            color: #C9A14A;
+        }
+        .special-banner h3 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .special-banner i { color: #C9A14A; margin-right: 10px; }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 5rem 5%;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            background: linear-gradient(180deg, #0B0B0B, #050505);
+        }
+        .feature-box {
+            flex: 1;
+            text-align: center;
+            background: rgba(255,255,255,0.02);
+            padding: 2.5rem 1.5rem;
+            border-radius: 32px;
+            transition: 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .feature-box:hover {
+            border-bottom-color: #C9A14A;
+            background: rgba(201,161,74,0.05);
+            transform: translateY(-5px);
+        }
+        .feature-box i { font-size: 3rem; color: #C9A14A; margin-bottom: 1rem; }
+        .custom-badge {
+            display: inline-block;
+            background: #C9A14A20;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #C9A14A;
+            margin-top: 1rem;
+        }
+
+        /* Reviews Slider */
+        .reviews { padding: 4rem 5%; background: #080808; }
+        .swiper-slide .review-card {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(201,161,74,0.2);
+        }
+        .stars { color: #C9A14A; margin: 1rem 0; letter-spacing: 3px; }
+
+        /* Contact */
+        .contact {
+            padding: 4rem 5%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            background: linear-gradient(135deg, #0f0f0f, #060606);
+        }
+        .contact-info {
+            flex: 1;
+            background: rgba(0,0,0,0.4);
+            padding: 2rem;
+            border-radius: 32px;
+            border: 1px solid rgba(201,161,74,0.3);
+        }
+        .map-container {
+            flex: 1;
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid #C9A14A;
+        }
+        iframe { width: 100%; height: 300px; border: 0; }
+
+        /* ULTRA PREMIUM FOOTER */
+        .premium-footer {
+            background: linear-gradient(180deg, #050505, #000000);
+            padding: 4rem 5% 2rem;
+            border-top: 2px solid rgba(201,161,74,0.4);
+            position: relative;
+        }
+        .premium-footer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #C9A14A, transparent);
+        }
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-col { flex: 1; min-width: 200px; }
+        .footer-col h4 { color: #C9A14A; margin-bottom: 1.2rem; font-size: 1.2rem; }
+        .footer-col p, .footer-col a { color: #aaa; text-decoration: none; line-height: 1.8; transition: 0.2s; display: block; }
+        .footer-col a:hover { color: #C9A14A; transform: translateX(5px); }
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF, #C9A14A);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        .social-icons i {
+            font-size: 1.5rem;
+            margin: 0 12px 0 0;
+            color: #C9A14A;
+            transition: 0.3s;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .social-icons i:hover { transform: translateY(-5px); color: #fff; }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #666;
+        }
+
+        /* WhatsApp & Scroll */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            z-index: 999;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .scroll-top {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            background: #C9A14A;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 999;
+        }
+        .scroll-top.show { opacity: 1; visibility: visible; }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+        .fade-up.appear { opacity: 1; transform: translateY(0); }
+        @media (max-width: 600px) {
+            .products-grid { grid-template-columns: 1fr; }
+            .modal-content { flex-direction: column; }
+        }
+
+        /* Reviews Page Styles */
+        .reviews-page {
+            padding: 5rem 5%;
+            background: #080808;
+            min-height: 100vh;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .review-full-card {
+            background: rgba(255,255,255,0.04);
+            border-radius: 28px;
+            padding: 1.8rem;
+            border: 1px solid rgba(201,161,74,0.2);
+            transition: 0.3s;
+        }
+        .review-full-card:hover {
+            border-color: #C9A14A;
+            transform: translateY(-5px);
+        }
+        .reviewer-name { color: #C9A14A; font-weight: 600; margin-top: 1rem; }
+        .back-home {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #C9A14A;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="loader-wrapper" id="loader"><div class="loader"></div></div>
+
+<nav class="navbar">
+    <div class="logo" id="logoLink">NAVEED SHOES</div>
+    <div class="menu-icon" id="menuIcon"><i class="fas fa-bars"></i></div>
+    <div class="nav-links" id="navLinks">
+        <a href="#home" data-nav="home">Home</a>
+        <a href="#featured" data-nav="featured">Collection</a>
+        <a href="#whyus" data-nav="whyus">Why Us</a>
+        <a href="#reviews" data-nav="reviews">Reviews</a>
+        <a href="#contact" data-nav="contact">Contact</a>
+        <a href="javascript:void(0)" id="allReviewsLink">All Reviews →</a>
+    </div>
+</nav>
+
+<!-- Homepage Content -->
+<div id="homepage">
+    <main>
+        <!-- HERO - ULTRA POWERFUL -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="badge"><i class="fas fa-crown"></i> Pakistan's Premier Footwear Brand</div>
+                <h1>Step Into <span class="hero-gold">Luxury</span><br>Walk With <span class="hero-gold">Pride</span></h1>
+                <p style="font-size: 1.1rem; max-width: 500px; margin: 1rem 0;">Handcrafted excellence. Custom designs. International quality at local prices. Over 10,000+ happy customers.</p>
+                <div class="hero-stats">
+                    <div class="stat"><h4>10,000+</h4><p>Happy Customers</p></div>
+                    <div class="stat"><h4>100%</h4><p>Genuine Leather</p></div>
+                    <div class="stat"><h4>24/7</h4><p>Premium Support</p></div>
+                </div>
+                <button class="btn-gold" id="heroShopBtn">Explore Collection →</button>
+            </div>
+            <div class="hero-img">
+                <img src="https://images.pexels.com/photos/1598508/pexels-photo-1598508.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Luxury Shoe">
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="categories">
+            <h2 class="section-title">Shop By <span>Category</span></h2>
+            <div class="categories-grid">
+                <div class="category-card fade-up"><i class="fas fa-male"></i><h3>Men Shoes</h3><p>Luxury & Casual</p></div>
+                <div class="category-card fade-up"><i class="fas fa-female"></i><h3>Women Shoes</h3><p>Elegant Heels</p></div>
+                <div class="category-card fade-up"><i class="fas fa-shoe-prints"></i><h3>Casual</h3><p>Daily Sneakers</p></div>
+                <div class="category-card fade-up"><i class="fas fa-briefcase"></i><h3>Formal</h3><p>Office Ready</p></div>
+                <div class="category-card fade-up"><i class="fas fa-futbol"></i><h3>Sports</h3><p>Performance</p></div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section id="featured" class="featured">
+            <h2 class="section-title">Bestseller <span>Collection</span></h2>
+            <div class="products-grid" id="productsGrid"></div>
+        </section>
+
+        <!-- Special Banner -->
+        <div class="special-banner fade-up">
+            <h3><i class="fas fa-truck-fast"></i> Free Delivery in Kandiaro</h3>
+            <p style="margin-top: 0.8rem;">Complimentary doorstep delivery within Kandiaro city limits.</p>
+            <div style="margin-top: 1rem;"><i class="fas fa-map-pin"></i> Shop #12, Main Kandiaro Market Road</div>
+        </div>
+
+        <!-- Why Choose Us -->
+        <section id="whyus" class="why-us">
+            <div class="feature-box fade-up"><i class="fas fa-gem"></i><h3>Premium Quality</h3><p>Italian leather & superior craftsmanship</p></div>
+            <div class="feature-box fade-up"><i class="fas fa-wallet"></i><h3>Affordable Luxury</h3><p>International standards, local prices</p></div>
+            <div class="feature-box fade-up"><i class="fas fa-clock"></i><h3>Fast Delivery</h3><p>Same day delivery in Kandiaro</p></div>
+            <div class="feature-box fade-up"><i class="fas fa-pen-fancy"></i><h3>Custom Design Available</h3><p>We arrange custom-made shoes as per your style & size. <span class="custom-badge">Order Custom</span></p></div>
+        </section>
+
+        <!-- Reviews Slider -->
+        <section id="reviews" class="reviews">
+            <h2 class="section-title">Trusted by <span>1000+ Customers</span></h2>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper" id="reviewsWrapper"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-outline" id="viewAllReviewsBtn" style="background:transparent; border:1px solid #C9A14A; color:#C9A14A; padding:10px 25px; border-radius:40px; cursor:pointer;">View All 30+ Reviews →</button>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="contact">
+            <div class="contact-info fade-up">
+                <h3><i class="fas fa-store" style="color:#C9A14A;"></i> Visit Our Flagship Store</h3>
+                <p style="margin: 1.2rem 0;"><i class="fas fa-location-dot" style="color:#C9A14A;"></i> Shop #12, Main Kandiaro Market Road, Near Shoe Market Area, Kandiaro, Sindh</p>
+                <p><i class="fas fa-phone-alt" style="color:#C9A14A;"></i> <a href="tel:+923058824023" style="color:white; text-decoration:none;">0305 8824023</a></p>
+                <div style="margin: 1.5rem 0;"><i class="fas fa-clock"></i> Mon-Sat: 11AM - 10PM</div>
+                <button class="btn-gold" id="callBtn"><i class="fas fa-headset"></i> Call Now</button>
+            </div>
+            <div class="map-container fade-up">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14417.524625975404!2d68.708102!3d27.0546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39364b2bb32a82d1%3A0xfc2c68b6ef26f5e3!2sKandiaro%2C%20Sindh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <!-- PREMIUM FOOTER -->
+    <footer class="premium-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">NAVEED SHOES</div>
+                <p>Luxury footwear since 2024. Premium quality, custom designs, and unmatched comfort.</p>
+                <div class="social-icons" style="margin-top: 1rem;">
+                    <i class="fab fa-instagram"></i><i class="fab fa-facebook"></i><i class="fab fa-twitter"></i><i class="fab fa-whatsapp"></i>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#featured">Collection</a>
+                <a href="#whyus">Why Us</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Shop #12, Main Kandiaro Market Road, Kandiaro, Sindh</p>
+                <p><i class="fas fa-phone"></i> 0305 8824023</p>
+                <p><i class="fas fa-envelope"></i> info@naveedshoes.pk</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <p>✓ Custom Design</p>
+                <p>✓ Free Delivery in Kandiaro</p>
+                <p>✓ Premium Quality</p>
+                <p>✓ 24/7 Support</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Naveed Shoes | All Rights Reserved | Pakistan's Premier Footwear Brand</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Quick View Modal -->
+<div id="quickViewModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div class="modal-img">
+            <img id="modalImg" src="" alt="Product">
+        </div>
+        <div class="modal-details">
+            <h2 id="modalName"></h2>
+            <div class="modal-price" id="modalPrice"></div>
+            <div class="modal-desc" id="modalDesc"></div>
+            <button class="modal-order" id="modalOrderBtn">Order Now on WhatsApp →</button>
+        </div>
+    </div>
+</div>
+
+<div class="whatsapp-float" id="whatsappBtn"><i class="fab fa-whatsapp"></i></div>
+<div class="scroll-top" id="scrollTopBtn"><i class="fas fa-chevron-up"></i></div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // 20 Products with descriptions
+    const products = [
+        { name: "Khussa Premium Handmade", price: 3499, desc: "Traditional Pakistani khussa handcrafted with premium leather and intricate thread work. Perfect for weddings and formal events.", img: "https://images.pexels.com/photos/1598508/pexels-photo-1598508.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Peshawari Chappal Leather", price: 2899, desc: "Authentic Peshawari chappal made from high-quality leather. Durable, comfortable, and stylish for casual wear.", img: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Formal Oxford Brown", price: 5499, desc: "Elegant brown Oxford shoes for formal occasions. Premium leather with anti-skid sole.", img: "https://images.pexels.com/photos/298864/pexels-photo-298864.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Men Casual Sneakers White", price: 4299, desc: "Trendy white sneakers for daily wear. Comfortable cushioning and breathable material.", img: "https://images.pexels.com/photos/1407354/pexels-photo-1407354.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Women Khussa Golden", price: 3999, desc: "Beautiful golden khussa for women. Hand-embroidered with traditional patterns.", img: "https://images.pexels.com/photos/1032110/pexels-photo-1032110.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Sports Running Shoes", price: 4999, desc: "High-performance running shoes with shock absorption and breathable mesh.", img: "https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Formal Black Derby", price: 5999, desc: "Classic black Derby shoes for office and formal events. Genuine leather with polished finish.", img: "https://images.pexels.com/photos/267202/pexels-photo-267202.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Men Loafers Brown", price: 4699, desc: "Stylish brown loafers for semi-formal occasions. Comfortable slip-on design.", img: "https://images.pexels.com/photos/1464625/pexels-photo-1464625.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Women Heels Party Wear", price: 4599, desc: "Elegant high heels for parties and weddings. Comfortable padding and stylish design.", img: "https://images.pexels.com/photos/1114012/pexels-photo-1114012.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Men Boots Leather", price: 7999, desc: "Premium leather boots for winter and rugged use. Durable sole and classic design.", img: "https://images.pexels.com/photos/3201299/pexels-photo-3201299.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Casual Slip-Ons", price: 3299, desc: "Comfortable slip-on shoes for everyday casual wear. Easy to wear and stylish.", img: "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "College Shoes Trendy", price: 3899, desc: "Trendy shoes for college and young adults. Modern design with comfort.", img: "https://images.pexels.com/photos/1194420/pexels-photo-1194420.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Wedding Khussa Deluxe", price: 5499, desc: "Deluxe wedding khussa with premium embroidery. Perfect for grooms and wedding guests.", img: "https://images.pexels.com/photos/1598508/pexels-photo-1598508.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Women Flats Comfort", price: 2799, desc: "Comfortable flat shoes for women. Perfect for daily office and casual wear.", img: "https://images.pexels.com/photos/1032110/pexels-photo-1032110.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Men Sports Shoes", price: 5299, desc: "Multi-sport shoes with excellent grip and cushioning.", img: "https://images.pexels.com/photos/1407354/pexels-photo-1407354.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Formal Monk Strap", price: 6499, desc: "Premium monk strap formal shoes with buckle design.", img: "https://images.pexels.com/photos/298864/pexels-photo-298864.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Kids School Shoes", price: 2499, desc: "Durable and comfortable school shoes for kids.", img: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Men Sandals Leather", price: 2999, desc: "Premium leather sandals for summer comfort.", img: "https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Women Boots Winter", price: 6999, desc: "Stylish winter boots for women with warm lining.", img: "https://images.pexels.com/photos/1114012/pexels-photo-1114012.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Premium Gents Loafer", price: 5999, desc: "Ultra-premium loafers for sophisticated gentlemen.", img: "https://images.pexels.com/photos/267202/pexels-photo-267202.jpeg?auto=compress&cs=tinysrgb&w=400" }
+    ];
+
+    // 30 Reviews
+    const allReviews = [
+        "Best quality khussa I ever bought! Amazing craftsmanship.", "Naveed Shoes delivers premium quality at affordable prices.", "Love their custom design service, made exactly as I wanted.", "Fast delivery in Kandiaro, highly recommended!", "The formal shoes are super comfortable for all-day wear.", "Excellent customer service and genuine leather products.", "My go-to shop for wedding footwear.", "Peshawari chappal quality is top notch.", "They arranged custom size for me, very professional.", "Better than many international brands.", "Affordable luxury, will order again.", "The sports shoes are durable and stylish.", "Women collection is elegant and trendy.", "Highly satisfied with the purchase.", "Best shoe store in Kandiaro!", "Custom design option is a game changer.", "Value for money, 10/10 recommend.", "Prompt response on WhatsApp.", "The leather quality is superb.", "Naveed Shoes exceeded my expectations!", "Will definitely order again from them.", "The packaging was also very premium.", "My entire family now buys from Naveed.", "The gold detailing on formal shoes is beautiful.", "Very comfortable for long walks.", "Amazing collection for men and women.", "The prices are very reasonable for the quality.", "Customer support helped me choose the right size.", "Fast shipping and great product.", "Naveed Shoes is a hidden gem in Kandiaro!"
+    ];
+    const reviewerNames = ["Ali R.", "Sana K.", "Bilal M.", "Zara T.", "Hamza A.", "Fatima Z.", "Usman C.", "Ayesha S.", "Omar J.", "Iqra N.", "Hassan W.", "Mehak L.", "Saad P.", "Rida E.", "Noman D.", "Shiza K.", "Faisal M.", "Nadia B.", "Kamran S.", "Rabia A.", "Imran K.", "Hina T.", "Ahmed R.", "Sadia M.", "Farhan A.", "Alishba Z.", "Waqas N.", "Maria S.", "Shahid B.", "Nida K."];
+
+    let currentModalProduct = null;
+
+    function renderProducts() {
+        const grid = document.getElementById('productsGrid');
+        if(!grid) return;
+        grid.innerHTML = '';
+        products.forEach((prod, idx) => {
+            const card = document.createElement('div');
+            card.className = 'product-card fade-up';
+            card.innerHTML = `
+                <img class="product-img" src="${prod.img}" alt="${prod.name}" loading="lazy" onclick="openQuickView(${idx})">
+                <div class="product-info">
+                    <div class="product-name">${prod.name}</div>
+                    <div class="product-price">PKR ${prod.price.toLocaleString()}</div>
+                    <button class="order-btn" data-name="${prod.name}">Order Now →</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+        document.querySelectorAll('.order-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const productName = btn.getAttribute('data-name');
+                window.open(`https://wa.me/923058824023?text=${encodeURIComponent(`Hello, I want to order: ${productName}`)}`, '_blank');
+            });
+        });
+    }
+
+    window.openQuickView = function(index) {
+        const prod = products[index];
+        currentModalProduct = prod;
+        document.getElementById('modalImg').src = prod.img;
+        document.getElementById('modalName').innerText = prod.name;
+        document.getElementById('modalPrice').innerHTML = `PKR ${prod.price.toLocaleString()}`;
+        document.getElementById('modalDesc').innerHTML = prod.desc;
+        document.getElementById('quickViewModal').classList.add('active');
+    }
+
+    function renderReviewsSlider() {
+        const wrapper = document.getElementById('reviewsWrapper');
+        if(!wrapper) return;
+        wrapper.innerHTML = '';
+        for(let i=0; i<10; i++) {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+            slide.innerHTML = `
+                <div class="review-card">
+                    <i class="fas fa-quote-left" style="color:#C9A14A; font-size:2rem; opacity:0.7;"></i>
+                    <p style="margin: 1rem 0; font-style:italic;">"${allReviews[i]}"</p>
+                    <div class="stars">★★★★★</div>
+                    <h4>— ${reviewerNames[i]}</h4>
+                </div>
+            `;
+            wrapper.appendChild(slide);
+        }
+        new Swiper('.mySwiper', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: { el: '.swiper-pagination', clickable: true },
+            autoplay: { delay: 3500, disableOnInteraction: false },
+            breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+        });
+    }
+
+    // Show all reviews page
+    function showAllReviewsPage() {
+        const homepage = document.getElementById('homepage');
+        let reviewsPage = document.getElementById('reviewsPage');
+        if(!reviewsPage) {
+            reviewsPage = document.createElement('div');
+            reviewsPage.id = 'reviewsPage';
+            reviewsPage.className = 'reviews-page';
+            document.body.appendChild(reviewsPage);
+        }
+        reviewsPage.innerHTML = `
+            <div style="padding: 2rem 5%;">
+                <a href="javascript:void(0)" id="backToHome" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                <h1 class="section-title">All Customer <span>Reviews</span></h1>
+                <p style="text-align: center; margin-bottom: 2rem;">What our 10,000+ happy customers say about Naveed Shoes</p>
+                <div class="reviews-grid" id="allReviewsGrid"></div>
+            </div>
+        `;
+        const grid = reviewsPage.querySelector('#allReviewsGrid');
+        for(let i=0; i<allReviews.length; i++) {
+            const card = document.createElement('div');
+            card.className = 'review-full-card';
+            card.innerHTML = `
+                <i class="fas fa-quote-left" style="color:#C9A14A; font-size:1.5rem; opacity:0.7;"></i>
+                <p style="margin: 1rem 0; line-height:1.6;">"${allReviews[i]}"</p>
+                <div class="stars">★★★★★</div>
+                <div class="reviewer-name">— ${reviewerNames[i]}</div>
+            `;
+            grid.appendChild(card);
+        }
+        homepage.style.display = 'none';
+        reviewsPage.style.display = 'block';
+        document.getElementById('backToHome').addEventListener('click', () => {
+            homepage.style.display = 'block';
+            reviewsPage.style.display = 'none';
+            window.scrollTo({ top: 0 });
+        });
+    }
+
+    function smoothScroll(targetId) {
+        const target = document.querySelector(targetId);
+        if(target) {
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 10;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderProducts();
+        renderReviewsSlider();
+        
+        // Modal close
+        document.querySelector('.modal-close').addEventListener('click', () => {
+            document.getElementById('quickViewModal').classList.remove('active');
+        });
+        document.getElementById('quickViewModal').addEventListener('click', (e) => {
+            if(e.target === document.getElementById('quickViewModal')) {
+                document.getElementById('quickViewModal').classList.remove('active');
+            }
+        });
+        document.getElementById('modalOrderBtn').addEventListener('click', () => {
+            if(currentModalProduct) {
+                window.open(`https://wa.me/923058824023?text=${encodeURIComponent(`Hello, I want to order: ${currentModalProduct.name} - PKR ${currentModalProduct.price}`)}`, '_blank');
+            }
+        });
+        
+        // Navigation
+        document.querySelectorAll('.nav-links a, #logoLink').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if(link.id === 'allReviewsLink' || link.id === 'viewAllReviewsBtn') {
+                    e.preventDefault();
+                    showAllReviewsPage();
+                    document.getElementById('navLinks')?.classList.remove('active');
+                    return;
+                }
+                const hash = link.getAttribute('href');
+                if(hash && hash.startsWith('#')) {
+                    e.preventDefault();
+                    smoothScroll(hash);
+                    document.getElementById('navLinks')?.classList.remove('active');
+                }
+            });
+        });
+        
+        document.getElementById('viewAllReviewsBtn')?.addEventListener('click', () => showAllReviewsPage());
+        document.getElementById('heroShopBtn')?.addEventListener('click', () => smoothScroll('#featured'));
+        document.getElementById('callBtn')?.addEventListener('click', () => window.location.href = "tel:+923058824023");
+        document.getElementById('whatsappBtn')?.addEventListener('click', () => window.open('https://wa.me/923058824023?text=Hello%20I%20want%20to%20explore%20premium%20collection%20and%20custom%20design', '_blank'));
+        
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => scrollBtn.classList.toggle('show', window.scrollY > 500));
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        
+        const menuIcon = document.getElementById('menuIcon');
+        const navLinks = document.getElementById('navLinks');
+        menuIcon?.addEventListener('click', () => navLinks.classList.toggle('active'));
+        
+        // Active link highlight
+        const sections = document.querySelectorAll('#home, #featured, #whyus, #reviews, #contact');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if(scrollY >= sectionTop) current = section.getAttribute('id');
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${current}`) link.classList.add('active');
+            });
+        });
+        
+        const faders = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('appear'); });
+        }, { threshold: 0.1 });
+        faders.forEach(el => observer.observe(el));
+        
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 500);
+        }, 700);
+    });
+</script>
+</body>
+</html>
